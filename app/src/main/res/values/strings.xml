@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">천하통신-추적</string>
+    <string name="no_found">There is not any result.</string>
+    <string name="loading">Please wait a moment.</string>
+    <!--    <string name="google_maps_key">AIzaSyCFExAp1y4jKhfz3VCu-Z0bvuBGl3EtW6w</string>-->
+    <string name="google_maps_key">AIzaSyBFOs-MzP9rlC3xdFDtpVhLccuJTo85a5U</string>
+</resources>
