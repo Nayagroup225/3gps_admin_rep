@@ -53,4 +53,8 @@ public class AppSharedPreference {
         return preferences.getString("state", "0");
     }
 
+    public void deleteAccount(){
+        preferences.edit().putBoolean("is_remembered", false).apply();
+    }
+
 }

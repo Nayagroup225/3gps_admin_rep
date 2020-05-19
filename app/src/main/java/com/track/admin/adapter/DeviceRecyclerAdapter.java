@@ -10,9 +10,11 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.track.admin.AudioActivity;
 import com.track.admin.BaseRecycler;
 import com.track.admin.MapActivity;
 import com.track.admin.R;
+import com.track.admin.SMSListActivity;
 import com.track.admin.model.UserListInfo;
 import com.track.admin.preferences.IRecyclerClickListener;
 
@@ -54,8 +56,39 @@ public class DeviceRecyclerAdapter extends BaseRecycler<UserListInfo> {
             }
         };
         gpsBtn.setOnClickListener(goToMapListener);
-        holder.itemView.findViewById(R.id.tv_state_gps).setOnClickListener(goToMapListener);
-        holder.itemView.findViewById(R.id.iv_state_gps).setOnClickListener(goToMapListener);
+
+        holder.itemView.findViewById(R.id.li_state_sms).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SMSListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("client_id", list.get(position).getId());
+                intent.putExtra("index", position);
+                if(!list.get(position).getNickName().equals("")){
+                    intent.putExtra("client_device_id", list.get(position).getNickName()+"("+list.get(position).getDeviceId()+")");
+                }else{
+                    intent.putExtra("client_device_id", list.get(position).getDeviceId());
+                }
+                intent.putExtra("state_sms", list.get(position).getStateSms());
+                v.getContext().startActivity(intent);
+            }
+        });
+        holder.itemView.findViewById(R.id.li_state_record).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), AudioActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("client_id", list.get(position).getId());
+                intent.putExtra("index", position);
+                if(!list.get(position).getNickName().equals("")){
+                    intent.putExtra("client_device_id", list.get(position).getNickName()+"("+list.get(position).getDeviceId()+")");
+                }else{
+                    intent.putExtra("client_device_id", list.get(position).getDeviceId());
+                }
+                intent.putExtra("state_record", list.get(position).getStateRecord());
+                v.getContext().startActivity(intent);
+            }
+        });
 //        SwitchMultiButton switchBlock = holder.itemView.findViewById(R.id.switch_lock);
 //        switchBlock.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
 //            @Override

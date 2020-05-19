@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MapActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/sp_toolbar_bg">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_arrow" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@color/button_middle_color"
+            android:textSize="16sp"
+            tools:text="Store Location" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_top_bar"
+        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@id/iv_type"
+        android:background="@color/white"
+        android:gravity="center|left"
+        android:paddingVertical="10dp"
+        android:paddingLeft="25dp"
+        android:text="32423423"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_address"
+        android:layout_alignParentRight="true"
+        android:background="@color/white"
+        android:paddingRight="20dp"
+        android:paddingBottom="5dp"
+        android:text="3434"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_below="@id/iv_type"
+        android:paddingHorizontal="10dp"
+        >
+        <TextView
+            android:id="@+id/tv_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:gravity="top|left"
+            android:text="3434"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/iv_read_state"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/tv_date"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icon_read"
+        />
+
+    <ImageView
+        android:id="@+id/iv_type"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="2dp"
+        android:layout_below="@id/tv_date"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/icon_receive"
+        android:layout_toLeftOf="@id/iv_read_state"
+        />
+</RelativeLayout>

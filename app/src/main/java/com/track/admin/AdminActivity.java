@@ -33,13 +33,13 @@ public class AdminActivity extends AppCompatActivity implements IApiCallback, IR
     SwipeRefreshLayout swipeRefreshLayout;
     ImageView notification;
 
-    public static String identity = "a";
+    public static String identity = "naya";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_admin);
+
         mNoResult = findViewById(R.id.tv_no_coupons);
         mDeviceList = findViewById(R.id.recycler_devices);
         notification = findViewById(R.id.iv_notification);

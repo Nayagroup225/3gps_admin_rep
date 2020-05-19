@@ -8,7 +8,7 @@ public class NotificationInfo {
     @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("message")
+    @SerializedName("notification")
     @Expose
     private String message;
     @SerializedName("created_at")

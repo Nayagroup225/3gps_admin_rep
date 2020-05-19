@@ -2,6 +2,7 @@ package com.track.admin.retrofit;
 
 import com.track.admin.model.BaseRes;
 import com.track.admin.model.NotificationInfoRes;
+import com.track.admin.model.SMSInfoRes;
 import com.track.admin.model.UserListRes;
 
 import retrofit2.Call;
@@ -29,8 +30,15 @@ interface APIService {
                              @Field("imei") String imei);
 
     @FormUrlEncoded
-    @POST("getNotification")
-    Call<NotificationInfoRes> notificationList(@Field("page") String pgae);
+    @POST("getTrackNotification")
+    Call<NotificationInfoRes> notificationList(@Field("page") String page);
+
+    @FormUrlEncoded
+    @POST("getSMSList")
+    Call<SMSInfoRes> smsList(
+            @Field("client_id") String clientId,
+            @Field("page") String page
+    );
 
     @FormUrlEncoded
     @POST("getClientPoints")
@@ -41,5 +49,17 @@ interface APIService {
     Call<BaseRes> setTrackGpsState(@Field("client_id") String clientId,
                                    @Field("state_gps") int stateGps);
 
+    @FormUrlEncoded
+    @POST("setStateSms")
+    Call<BaseRes> setTrackSmsState(@Field("client_id") String clientId,
+                                   @Field("state_sms") int stateSms);
 
+    @FormUrlEncoded
+    @POST("setStateRecord")
+    Call<BaseRes> setRecordState(@Field("client_id") String clientId,
+                                   @Field("state_record") int stateRecord);
+
+    @FormUrlEncoded
+    @POST("getRecordedFile")
+    Call<BaseRes> getRecordedFile(@Field("client_id") String clientId);
 }

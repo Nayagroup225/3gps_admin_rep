@@ -11,9 +11,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-class RestClient {
+public class RestClient {
 
-    private static final String BASE_URL = "http://208.109.14.103:5000/";//"http://192.168.0.113:3000/";//
+    public static final String BASE_URL = "http://192.168.0.113:3000/";//"http://208.109.14.103:5000/";//
     private static APIService apiRestInterfaces;
 
 

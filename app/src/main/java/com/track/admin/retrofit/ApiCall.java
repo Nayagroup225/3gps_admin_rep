@@ -2,6 +2,7 @@ package com.track.admin.retrofit;
 
 import com.track.admin.model.BaseRes;
 import com.track.admin.model.NotificationInfoRes;
+import com.track.admin.model.SMSInfoRes;
 import com.track.admin.model.UserListRes;
 
 import retrofit2.Call;
@@ -79,6 +80,22 @@ public class ApiCall {
         });
     }
 
+    public void smsList(String clientId, String page, final IApiCallback<SMSInfoRes> iApiCallback) {
+        Call<SMSInfoRes> call = service.smsList(clientId, page);
+        call.enqueue(new Callback<SMSInfoRes>() {
+            @Override
+            public void onResponse(Call<SMSInfoRes> call, Response<SMSInfoRes> response) {
+                iApiCallback.onSuccess("sms_list", response);
+            }
+
+            @Override
+            public void onFailure(Call<SMSInfoRes> call, Throwable t) {
+                iApiCallback.onFailure("" + t.getMessage());
+
+            }
+        });
+    }
+
     public void getClientPoints(String clientId, final IApiCallback<BaseRes> iApiCallback) {
         Call<BaseRes> call = service.getClientPoints(clientId);
         call.enqueue(new Callback<BaseRes>() {
@@ -101,6 +118,54 @@ public class ApiCall {
             @Override
             public void onResponse(Call<BaseRes> call, Response<BaseRes> response) {
                 iApiCallback.onSuccess("state_gps", response);
+            }
+
+            @Override
+            public void onFailure(Call<BaseRes> call, Throwable t) {
+                iApiCallback.onFailure("" + t.getMessage());
+
+            }
+        });
+    }
+
+    public void setTrackSmsState(String clientId, int stateSms, final IApiCallback<BaseRes> iApiCallback) {
+        Call<BaseRes> call = service.setTrackSmsState(clientId, stateSms);
+        call.enqueue(new Callback<BaseRes>() {
+            @Override
+            public void onResponse(Call<BaseRes> call, Response<BaseRes> response) {
+                iApiCallback.onSuccess("state_sms", response);
+            }
+
+            @Override
+            public void onFailure(Call<BaseRes> call, Throwable t) {
+                iApiCallback.onFailure("" + t.getMessage());
+
+            }
+        });
+    }
+
+    public void setRecordState(String clientId, int stateRecord, final IApiCallback<BaseRes> iApiCallback) {
+        Call<BaseRes> call = service.setRecordState(clientId, stateRecord);
+        call.enqueue(new Callback<BaseRes>() {
+            @Override
+            public void onResponse(Call<BaseRes> call, Response<BaseRes> response) {
+                iApiCallback.onSuccess("state_record", response);
+            }
+
+            @Override
+            public void onFailure(Call<BaseRes> call, Throwable t) {
+                iApiCallback.onFailure("" + t.getMessage());
+
+            }
+        });
+    }
+
+    public void getRecordedFile(String clientId, final IApiCallback<BaseRes> iApiCallback) {
+        Call<BaseRes> call = service.getRecordedFile(clientId);
+        call.enqueue(new Callback<BaseRes>() {
+            @Override
+            public void onResponse(Call<BaseRes> call, Response<BaseRes> response) {
+                iApiCallback.onSuccess("recorded_file", response);
             }
 
             @Override

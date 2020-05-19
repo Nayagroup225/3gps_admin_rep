@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements IApiCallback<Bas
         }
 
         if(AppSharedPreference.getInstance(this).getAccountRemeberd()){
-            getLoginResult(AppSharedPreference.getInstance(this).getAccountId(), AppSharedPreference.getInstance(this).getAccountPassword());
+            setUserInfoFromRemember(AppSharedPreference.getInstance(this).getAccountId(), AppSharedPreference.getInstance(this).getAccountPassword());
         }
 
     }
@@ -109,25 +109,21 @@ public class LoginActivity extends AppCompatActivity implements IApiCallback<Bas
     }
 
     protected void getLoginResult(){
-        ProgressHelper.dismiss();
-        ProgressHelper.showDialog(this);
         String userName = mUserNameEt.getText().toString();
         String password = mPasswordEt.getText().toString();
         if(userName.equals("") || password.equals("")){
             Toast.makeText(this, "Please Input User Name or Password.", Toast.LENGTH_SHORT).show();
-            return;
+        }else {
+            ProgressHelper.dismiss();
+            ProgressHelper.showDialog(this);
+            ApiCall.getInstance().adminLogin(userName, password, imei, AdminActivity.identity, this);
         }
-        ApiCall.getInstance().adminLogin(userName, password, imei, AdminActivity.identity, this);
     }
 
-    protected void getLoginResult(String userName, String password){
-        ProgressHelper.dismiss();
-        ProgressHelper.showDialog(this);
-        if(userName.equals("") || password.equals("")){
-            Toast.makeText(this, "Please Input User Name or Password.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        ApiCall.getInstance().adminLogin(userName, password, imei, AdminActivity.identity, this);
+    protected void setUserInfoFromRemember(String userName, String password){
+        mUserNameEt.setText(userName);
+        mPasswordEt.setText(password);
+        mRememberPassword.setChecked(true);
     }
 
     @Override
@@ -139,6 +135,8 @@ public class LoginActivity extends AppCompatActivity implements IApiCallback<Bas
                 if (res.body().getErrorCode().equals("0")) {
                     if(mRememberPassword.isChecked()){
                         AppSharedPreference.getInstance(LoginActivity.this).setAccount(mUserNameEt.getText().toString(), mPasswordEt.getText().toString());
+                    }else{
+                        AppSharedPreference.getInstance(LoginActivity.this).deleteAccount();
                     }
                     Intent intent = new Intent(this, AdminActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

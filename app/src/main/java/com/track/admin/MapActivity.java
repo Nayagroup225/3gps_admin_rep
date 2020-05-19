@@ -72,15 +72,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 googleMap.setMapType(mMapType);
                 googleMap.clear();
                 int size = mPositionsArray.size();
-                LatLng userPosition = mPositionsArray.get(size-1);
-
-                int height = 100;
-                int width = 100;
-                Bitmap startMarker = Bitmap.createScaledBitmap(((BitmapDrawable)getResources().getDrawable(R.drawable.icon_point_start)).getBitmap(), width, height, false);
-                Bitmap endMarker = Bitmap.createScaledBitmap(((BitmapDrawable)getResources().getDrawable(R.drawable.icon_point_end)).getBitmap(), width, height, false);
-
-                googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(startMarker)).position(userPosition).title("First Position"));
+                if(size>0) {
+                    LatLng userPosition = mPositionsArray.get(size - 1);
+                    int height = 100;
+                    int width = 100;
+                    Bitmap startMarker = Bitmap.createScaledBitmap(((BitmapDrawable) getResources().getDrawable(R.drawable.icon_point_start)).getBitmap(), width, height, false);
+                    googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(startMarker)).position(userPosition).title("First Position"));
+                }
                 if(size>=2) {
+                    int height = 100;
+                    int width = 100;
+                    Bitmap endMarker = Bitmap.createScaledBitmap(((BitmapDrawable) getResources().getDrawable(R.drawable.icon_point_end)).getBitmap(), width, height, false);
                     googleMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(endMarker)).position(mPositionsArray.get(0)).title("Second Position"));
                 }
 
@@ -107,7 +109,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MapActivity.super.onBackPressed();
+                onBackPressed();
             }
         });
 
